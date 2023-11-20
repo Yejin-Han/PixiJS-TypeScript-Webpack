@@ -1,4 +1,4 @@
-import { Application, Graphics, Loader } from "pixi.js";
+import { Application, Graphics, Loader, Texture, Sprite } from "pixi.js";
 
 const app = new Application({
   width: innerWidth,
@@ -26,6 +26,7 @@ app.stage.addChild(graphic2);
 
 const loader = Loader.shared;
 
+/* 
 // Load assets
 loader
   .add(
@@ -53,3 +54,34 @@ loader.onLoad.add((e) => {
 loader.onComplete.add((e) => {
   console.log("Loading of the assets is completed");
 });
+ */
+
+// Texture and Sprites
+loader
+  .add("img1", "./assets/1.png")
+  .add("img2", "./assets/2.png")
+  .load((l) => {
+    // Convert to texture
+    const texture = Texture.from("img1");
+    const texture2 = Texture.from("img2");
+    console.log(texture, texture2);
+
+    // Convert to sprite
+    const sprite = new Sprite(texture);
+    console.log(sprite);
+
+    sprite.position.set(100, 100);
+    sprite.width = 200;
+    sprite.height = 200;
+
+    app.stage.addChild(sprite);
+
+    const sprite2 = new Sprite(texture2);
+    console.log(sprite2);
+
+    sprite2.position.set(400, 400);
+    sprite2.width = 200;
+    sprite2.height = 200;
+
+    app.stage.addChild(sprite2);
+  });
