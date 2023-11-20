@@ -37,5 +37,5 @@ loader.onLoad.add((e) => {
 });
 
 loader.onComplete.add((e) => {
-  console.log("Loading of the assetes is compleyed");
+  console.log("Loading of the assets is completed");
 });
