@@ -1,4 +1,11 @@
-import { Application, Graphics, Loader, Texture, Sprite } from "pixi.js";
+import {
+  Application,
+  Graphics,
+  Loader,
+  Texture,
+  Sprite,
+  AnimatedSprite,
+} from "pixi.js";
 
 const app = new Application({
   width: innerWidth,
@@ -56,6 +63,7 @@ loader.onComplete.add((e) => {
 });
  */
 
+/* 
 // Texture and Sprites
 loader
   .add("img1", "./assets/1.png")
@@ -84,4 +92,46 @@ loader
     sprite2.height = 200;
 
     app.stage.addChild(sprite2);
+  });
+ */
+
+// Animated sprites
+loader
+  .add("./assets/spritesheet.json")
+  .add("./assets/fighter.json")
+  .load(() => {
+    const textures = [];
+
+    for (let i = 1; i <= 4; i++) {
+      const texture = Texture.from(`RunRight0${i}.png`);
+      textures.push(texture);
+    }
+    console.log(textures);
+
+    const animatedSprite = new AnimatedSprite(textures);
+    animatedSprite.x = 300;
+    animatedSprite.y = 150;
+    animatedSprite.play(); // Will run the animation
+
+    app.stage.addChild(animatedSprite);
+    animatedSprite.animationSpeed = 0.2;
+
+    const jetArray = [];
+
+    for (let i = 0; i < 30; i++) {
+      if (i < 10) {
+        const texture = Texture.from(`rollSequence000${i}.png`);
+        jetArray.push(texture);
+      } else {
+        const texture = Texture.from(`rollSequence00${i}.png`);
+        jetArray.push(texture);
+      }
+    }
+
+    const jetSprites = new AnimatedSprite(jetArray);
+    jetSprites.x = 300;
+    jetSprites.y = 450;
+    app.stage.addChild(jetSprites);
+    jetSprites.play();
+    jetSprites.animationSpeed = 0.6;
   });
