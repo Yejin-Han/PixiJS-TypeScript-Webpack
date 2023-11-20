@@ -95,6 +95,7 @@ loader
   });
  */
 
+/*   
 // Animated sprites
 loader
   .add("./assets/spritesheet.json")
@@ -152,3 +153,16 @@ loader
       backToPos();
     });
   });
+ */
+
+// Anchor and Rotation
+loader.add("img", "./assets/1.png").load((l) => {
+  const sprite = Sprite.from("img");
+  app.stage.addChild(sprite);
+  sprite.position.set(300);
+  sprite.anchor.set(0.5);
+
+  app.ticker.add(() => {
+    sprite.rotation += 0.01;
+  });
+});
