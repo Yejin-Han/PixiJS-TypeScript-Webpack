@@ -155,6 +155,7 @@ loader
   });
  */
 
+/*   
 // Anchor and Rotation
 loader.add("img", "./assets/1.png").load((l) => {
   const sprite = Sprite.from("img");
@@ -165,4 +166,19 @@ loader.add("img", "./assets/1.png").load((l) => {
   app.ticker.add(() => {
     sprite.rotation += 0.01;
   });
+});
+ */
+
+// Masks
+loader.add("img", "./assets/1.png").load((l) => {
+  const graphics = new Graphics();
+  graphics.beginFill();
+  graphics.drawCircle(200, 100, 100);
+  graphics.endFill();
+  app.stage.addChild(graphics);
+
+  const sprite = Sprite.from("img");
+  app.stage.addChild(sprite);
+
+  sprite.mask = graphics;
 });
