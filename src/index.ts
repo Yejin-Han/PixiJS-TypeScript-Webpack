@@ -134,4 +134,21 @@ loader
     app.stage.addChild(jetSprites);
     jetSprites.play();
     jetSprites.animationSpeed = 0.6;
+
+    // ticker
+    function backToPos() {
+      if (jetSprites.y == -300) {
+        jetSprites.y = screen.height;
+      }
+
+      if (animatedSprite.x == screen.width + 200) {
+        animatedSprite.x = 0;
+      }
+    }
+
+    app.ticker.add(() => {
+      animatedSprite.x += 5;
+      jetSprites.y -= 2;
+      backToPos();
+    });
   });
